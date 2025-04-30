@@ -1,0 +1,73 @@
+#include <stdio.h>
+#include <ctype.h>
+
+int main() {
+    char text[1000];
+    printf("Encrypted text: ");
+    fgets(text, sizeof(text), stdin);
+
+    for (int k = 1; k < 26; k++) {
+        printf("Key %2d: ", k);
+        for (int i = 0; text[i]; i++) {
+            if (isalpha(text[i])) {
+                char base = isupper(text[i]) ? 'A' : 'a';
+                putchar((text[i] - base - k + 26) % 26 + base);
+            } else {
+                putchar(text[i]);
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+//output:-
+Encrypted text: helloeveryone
+Key  1: gdkkndudqxnmd
+
+Key  2: fcjjmctcpwmlc
+
+Key  3: ebiilbsbovlkb
+
+Key  4: dahhkaranukja
+
+Key  5: czggjzqzmtjiz
+
+Key  6: byffiypylsihy
+
+Key  7: axeehxoxkrhgx
+
+Key  8: zwddgwnwjqgfw
+
+Key  9: yvccfvmvipfev
+
+Key 10: xubbeuluhoedu
+
+Key 11: wtaadtktgndct
+
+Key 12: vszzcsjsfmcbs
+
+Key 13: uryybrirelbar
+
+Key 14: tqxxaqhqdkazq
+
+Key 15: spwwzpgpcjzyp
+
+Key 16: rovvyofobiyxo
+
+Key 17: qnuuxnenahxwn
+
+Key 18: pmttwmdmzgwvm
+
+Key 19: olssvlclyfvul
+
+Key 20: nkrrukbkxeutk
+
+Key 21: mjqqtjajwdtsj
+
+Key 22: lippsizivcsri
+
+Key 23: khoorhyhubrqh
+
+Key 24: jgnnqgxgtaqpg
+
+Key 25: ifmmpfwfszpof
