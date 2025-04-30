@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+long long power(long long base, long long exp, long long mod) {
+    long long result = 1;
+    for(int i = 0; i < exp; i++)
+        result = (result * base) % mod;
+    return result;
+}
+int main() {
+    long long p = 23;  
+    long long g = 5;   
+    long long a = 6;  
+    long long b = 15;  
+    long long A = power(g, a, p);  
+    long long B = power(g, b, p);  
+    long long shared_A = power(B, a, p);
+    long long shared_B = power(A, b, p); 
+    printf("Public values:  p = %lld, g = %lld\n", p, g);
+    printf("Alice's public key: %lld\n", A);
+    printf("Bob's public key:   %lld\n", B);
+    printf("Alice's shared key: %lld\n", shared_A);
+    printf("Bob's shared key:   %lld\n", shared_B);
+    return 0;
+}
+//output:-
+Public values:  p = 23, g = 5
+Alice's public key: 8
+Bob's public key:   19
+Alice's shared key: 2
+Bob's shared key:   2
