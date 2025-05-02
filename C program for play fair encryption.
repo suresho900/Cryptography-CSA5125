@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <ctype.h>
+int gcd(int a, int b) 
+{
+    return b ? gcd(b, a % b) : a; 
+    
+}
+int valid(int a, int b) 
+{
+    return gcd(a, 26) == 1 && b >= 0 && b < 26; 
+}
+void encrypt(char *in, char *out, int a, int b) 
+{
+    int i = 0;
+    while (in[i]) 
+    {
+        if (isalpha(in[i]))
+        {
+            char base = isupper(in[i]) ? 'A' : 'a';
+            out[i] = ((a * (in[i] - base) + b) % 26) + base;
+        } 
+        else out[i] = in[i];
+        i++;
+    }
+    out[i] = '\0';
+}
+int main()
+{
+    char m[100], c[100];
+    int a = 5, b = 7;
+    printf("Enter plaintext: ");
+    fgets(m, sizeof(m), stdin);
+    if (valid(a, b)) 
+    {
+        encrypt(m, c, a, b);
+        printf("Ciphertext: %s\n", c);
+    } 
+    else printf("Invalid a or b\n");
+    return 0;
+}
+output:-
+Enter plaintext: he is coming
+Ciphertext: qb vt rzpvul
