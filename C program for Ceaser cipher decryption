@@ -1,24 +1,28 @@
 #include <stdio.h>
-#include <ctype.h>
-
 int main() {
     char text[1000];
-    int k;
-    printf("Encrypted text: ");
-    fgets(text, sizeof(text), stdin);
-    printf("Shift (1-25): ");
-    scanf("%d", &k);
-
-    for (int i = 0; text[i]; i++) {
-        if (isalpha(text[i])) {
-            char base = isupper(text[i]) ? 'A' : 'a';
-            text[i] = (text[i] - base - k + 26) % 26 + base;
+    int i, key;
+    printf("Enter the plaintext: ");
+    gets(text); 
+    printf("Enter key (1-25): ");
+    scanf("%d", &key);
+    for (i = 0; text[i] != '\0'; i++) {
+        char ch = text[i];
+        if (ch >= 'A' && ch <= 'Z') {
+            ch = ch + key;
+            if (ch > 'Z')
+                ch = ch - 26;
+        } else if (ch >= 'a' && ch <= 'z') {
+            ch = ch + key;
+            if (ch > 'z')
+                ch = ch - 26;
         }
+        text[i] = ch;
     }
-
-    printf("Decrypted text: %s", text);
+    printf("Encrypted text: %s\n", text); 
     return 0;
 }
+
 //output:-
 //Encrypted text: khoorhyhubrqh
 //Shift (1-25): 3
